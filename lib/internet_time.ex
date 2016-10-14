@@ -12,12 +12,15 @@ defmodule InternetTime do
 
   ## Examples
 
-      iex(1)> InternetTime.current_beat_time(6)
-      180.123456
+      ```
+      InternetTime.current_beat_time(6)
+      # => 123
+      ```
 
   """
   def current_beat_time(max_precision \\ 1) do
-    beats = (DateTime.utc_now.second + (DateTime.utc_now.minute * 60) + ((DateTime.utc_now.hour * 3600))) / 86.4
+    current_time = DateTime.utc_now
+    beats = (current_time.second + (current_time.minute * 60) + ((current_time.hour * 3600))) / 86.4
     Float.round(beats, max_precision)
   end
 
